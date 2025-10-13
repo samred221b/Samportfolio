@@ -22,7 +22,6 @@
     "render:start": "npm start",
     "railway:build": "npm run build",
     "railway:start": "npm start",
-    "postinstall": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

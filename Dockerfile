@@ -4,17 +4,17 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files first
 COPY package*.json ./
 
-# Clear npm cache and install dependencies
+# Install dependencies (without building yet)
 RUN npm cache clean --force && \
-    npm install --frozen-lockfile || npm install
+    npm install
 
-# Copy source code
+# Copy all source files including public folder
 COPY . .
 
-# Build the React app
+# Now build the React app (after all files are copied)
 RUN npm run build
 
 # Remove dev dependencies to reduce image size
