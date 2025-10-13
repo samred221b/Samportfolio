@@ -120,7 +120,21 @@ npm start
 
 ## 🔧 Troubleshooting
 
-### Build Fails
+### Build Fails (npm ci issues)
+If you get `npm ci` errors about lockfile sync:
+
+```bash
+# Option 1: Use the fix script
+node fix-dependencies.js
+
+# Option 2: Manual fix
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+npm run build
+```
+
+### Build Fails (General)
 ```bash
 # Check Node.js version
 node --version  # Should be 18+

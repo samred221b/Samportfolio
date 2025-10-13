@@ -3,9 +3,17 @@
 # Render Build Script for Samuel's Portfolio
 echo "🚀 Starting Render build process..."
 
+# Clear npm cache
+echo "🧹 Clearing npm cache..."
+npm cache clean --force
+
 # Install dependencies
 echo "📦 Installing dependencies..."
-npm ci --production=false
+npm install || {
+    echo "❌ npm install failed, trying alternative approach..."
+    rm -rf node_modules package-lock.json
+    npm install
+}
 
 # Build React application
 echo "🔨 Building React application..."

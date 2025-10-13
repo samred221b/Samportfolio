@@ -7,8 +7,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Clear npm cache and install dependencies
+RUN npm cache clean --force && \
+    npm install --frozen-lockfile || npm install
 
 # Copy source code
 COPY . .
@@ -16,7 +17,10 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# Expose port (Railway will override this)
+# Remove dev dependencies to reduce image size
+RUN npm prune --production
+
+# Expose port
 EXPOSE 3000
 
 # Health check

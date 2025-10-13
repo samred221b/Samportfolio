@@ -18,10 +18,11 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "start": "node server.js",
-    "render:build": "npm install && npm run build",
+    "render:build": "npm cache clean --force && npm install && npm run build",
     "render:start": "npm start",
     "railway:build": "npm run build",
     "railway:start": "npm start",
+    "postinstall": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
